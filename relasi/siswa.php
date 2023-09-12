@@ -12,7 +12,7 @@
 
 <body class="min-vh-100 d-flex align-items-center">
     <div class='card w-50 m-auto p-3'>
-        <h3 class="text-center ">Read</h3>
+        <h3 class="text-center ">Table Siswa</h3>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -22,6 +22,7 @@
                     <th>Gender</th>
                     <th>Kelas</th>
                     <th>Sekolah</th>
+                    <th class="text-center">Aksi</th>
                 </tr>
             </thead>
             <tbody class="table-group-divider">
@@ -40,13 +41,27 @@
                         <td><?= $row['gender']; ?></td> 
                         <td><?= $row['tingkat_kelas'] . ' ' . $row['jurusan_kelas'] ?></td> 
                         <td><?= $row['nama_sekolah']; ?></td> 
+                        <td class="text-center">
+                            <a href="<?= 'detail.php?id='.$row['id_siswa']; ?>" class="btn btn-sm btn-primary">Detail</a>
+                            <button onClick="<?= 'hapus('.$row['id_siswa'].')'; ?>" class="btn btn-sm btn-danger">Delete</button>
+                        </td>
                     </tr> 
+                    
                 <?php 
-                } 
+                }
             ?>   
             </tbody>
         </table>
-    </div>
+        <a href="create.php" class="btn btn-sm btn-primary">Tambah</a>
+    </div><script>
+        function hapus(id) {
+            console.log('Fungsi hapus dipanggil dengan id: ' + id);
+            var yes = confirm('Yakin dihapus?');
+            if (yes == true) {
+                window.location.href = "delete.php?id=" + id;
+            }
+        }
+    </script>
 </body>
 
 </html>
